@@ -4,7 +4,7 @@ package aplikasipertambahan;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author ACER A314
@@ -36,7 +36,7 @@ public class PertambahanFrame extends javax.swing.JFrame {
         btnHapus = new javax.swing.JButton();
         txtAngka1 = new javax.swing.JTextField();
         txtAngka2 = new javax.swing.JTextField();
-        hasil = new javax.swing.JLabel();
+        lblHasil = new javax.swing.JLabel();
         btnKeluar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,6 +80,11 @@ public class PertambahanFrame extends javax.swing.JFrame {
         jPanel1.add(btnTambah, gridBagConstraints);
 
         btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -90,6 +95,11 @@ public class PertambahanFrame extends javax.swing.JFrame {
         txtAngka1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAngka1ActionPerformed(evt);
+            }
+        });
+        txtAngka1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAngka1KeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -104,23 +114,31 @@ public class PertambahanFrame extends javax.swing.JFrame {
                 txtAngka2ActionPerformed(evt);
             }
         });
+        txtAngka2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAngka2KeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel1.add(txtAngka2, gridBagConstraints);
-
-        hasil.setText("jLabelHasil");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel1.add(hasil, gridBagConstraints);
+        jPanel1.add(lblHasil, gridBagConstraints);
 
         btnKeluar.setText("Keluar");
+        btnKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKeluarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -157,8 +175,40 @@ public class PertambahanFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAngka1ActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        // TODO add your handling code here:
+        try {
+        int angka1 = Integer.parseInt(txtAngka1.getText());
+        int angka2 = Integer.parseInt(txtAngka2.getText());
+        int hasil = angka1 + angka2;
+        lblHasil.setText(String.valueOf(hasil));
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Masukkan angka yang valid", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+    txtAngka1.setText("");
+    txtAngka2.setText("");
+    lblHasil.setText("");
+    txtAngka1.requestFocus();
+    }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
+    System.exit(0);
+    }//GEN-LAST:event_btnKeluarActionPerformed
+
+    private void txtAngka1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAngka1KeyTyped
+    char c = evt.getKeyChar();
+    if (!Character.isDigit(c)) {
+        evt.consume();
+    }
+    }//GEN-LAST:event_txtAngka1KeyTyped
+
+    private void txtAngka2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAngka2KeyTyped
+    char c = evt.getKeyChar();
+    if (!Character.isDigit(c)) {
+        evt.consume();
+    }
+    }//GEN-LAST:event_txtAngka2KeyTyped
 
     /**
      * @param args the command line arguments
@@ -199,11 +249,11 @@ public class PertambahanFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnTambah;
-    private javax.swing.JLabel hasil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblHasil;
     private javax.swing.JTextField txtAngka1;
     private javax.swing.JTextField txtAngka2;
     // End of variables declaration//GEN-END:variables
