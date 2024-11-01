@@ -1,2 +1,2 @@
-# AplikasiPertambahan
- Latihan 1 PBO 2 
+# AplikasiPertambahanDuaAngka
+ Latihan 1 - 2210010618 
